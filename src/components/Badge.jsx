@@ -3,27 +3,23 @@ import "../styles/Badge.css";
 // Importar una imagen
 import confLogo from "../assets/images/badge-header.svg";
 
-export const Badge = () => {
+// Recibir props en el componente
+export const Badge = ({ firstName, lastName, jobTitle, twitter, avatar }) => {
   return (
     <div className="Badge">
       <div className="Badge__header">
         <img src={confLogo} alt="Logotipo de la conferencia" />
       </div>
       <div className="Badge__section-name">
-        <img
-          src="https://s.gravatar.com/avatar/3ec49fc2d25e53433fc6a2f8090e705a?s=256
-"
-          alt="Avatar"
-          className="Badge__avatar"
-        />
+        <img src={avatar} alt="Avatar" className="Badge__avatar" />
         <h1>
-          Alejandro <br />
-          González
+          {firstName} <br />
+          {lastName}
         </h1>
       </div>
       <div className="Badge__section-info">
-        <h3>Ingeniero Frontend</h3>
-        <span>@alexglzrys</span>
+        <h3>{jobTitle}</h3>
+        <span>@{twitter}</span>
       </div>
       <div className="Badge__footer">#paltziconf</div>
     </div>

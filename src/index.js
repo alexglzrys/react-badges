@@ -10,6 +10,12 @@ import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Badge />
+    <Badge
+      firstName="Alejandro"
+      lastName="González"
+      avatar="https://s.gravatar.com/avatar/3ec49fc2d25e53433fc6a2f8090e705a?s=256"
+      jobTitle="Ingeniero Frontend en Figment"
+      twitter="alexglzrys"
+    />
   </React.StrictMode>
 );
