@@ -1,36 +1,23 @@
 import React from "react";
-import { useState } from "react";
 
-// Inicializar el estado del formulario con un objeto vacio que representa la estructura de la información almacenada
-const initialFormState = {
-  firstname: "",
-  lastname: "",
-  email: "",
-  jobtitle: "",
-  twitter: "",
-};
-
-export const BadgeForm = () => {
-  // Establecer el estado interno de este componente
-  const [form, setForm] = useState(initialFormState);
-
-  // Manejador de inputs controlados
-  const handleInputChange = ({ target }) => {
-    const { name, value } = target;
-
-    // Establecer el nuevo estado del formulario, conservando la data actual y actualizando solo aquello que sea necesario
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
+export const BadgeForm = ({
+  formValues,
+  handleInputChange,
+  createNewBadge,
+}) => {
+  /**
+   * El estado interno de este componente está gestionado por la página BadgeNew
+   * Ya que los datos ingresados en el formulario, se deben ver reflejados de forma reactiva en el componetne Badge
+   * Esto se le conoce como levantamiento del estado, es decir, situarlo lo más arriba posible para que los componentes que hagan uso del mismo lo puedan consumir.
+   */
 
   // Manejandor de envío de formulario
   const handleFormSubmit = (event) => {
     event.preventDefault();
+    createNewBadge();
     console.log("Formulario enviado");
-    console.log(form);
   };
+
   return (
     <div>
       <h1>New Attendant</h1>
@@ -45,7 +32,7 @@ export const BadgeForm = () => {
             id="firstname"
             name="firstname"
             onChange={handleInputChange}
-            value={form.firstname}
+            value={formValues.firstname}
           />
         </div>
         <div className="mb-3">
@@ -56,7 +43,7 @@ export const BadgeForm = () => {
             id="lastname"
             name="lastname"
             onChange={handleInputChange}
-            value={form.lastname}
+            value={formValues.lastname}
           />
         </div>
         <div className="mb-3">
@@ -67,7 +54,7 @@ export const BadgeForm = () => {
             id="email"
             name="email"
             onChange={handleInputChange}
-            value={form.email}
+            value={formValues.email}
           />
         </div>
         <div className="mb-3">
@@ -78,7 +65,7 @@ export const BadgeForm = () => {
             id="jobtitle"
             name="jobtitle"
             onChange={handleInputChange}
-            value={form.jobtitle}
+            value={formValues.jobtitle}
           />
         </div>
         <div className="mb-4">
@@ -89,7 +76,7 @@ export const BadgeForm = () => {
             id="twitter"
             name="twitter"
             onChange={handleInputChange}
-            value={form.twitter}
+            value={formValues.twitter}
           />
         </div>
         <button type="submit" className="btn btn-success">
