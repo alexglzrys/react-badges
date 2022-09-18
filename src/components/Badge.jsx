@@ -1,5 +1,5 @@
 // Importar un archivo CSS con las clases para decorar este componente
-import "../styles/Badge.css";
+import "./styles/Badge.css";
 // Importar una imagen
 import confLogo from "../assets/images/badge-header.svg";
 
