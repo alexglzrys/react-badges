@@ -1,5 +1,6 @@
 import { Navbar } from "../components/Navbar";
 import { Badge } from "../components/Badge";
+import { BadgeForm } from "../components/BadgeForm";
 
 import "./styles/BadgeNew.css";
 import Logotipo from "../assets/images/platziconf-logo.svg";
@@ -29,7 +30,9 @@ export const BadgeNew = () => {
               twitter="alexglzrys"
             />
           </div>
-          <div className="col"></div>
+          <div className="col">
+            <BadgeForm />
+          </div>
         </div>
       </div>
     </div>
