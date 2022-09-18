@@ -1,0 +1,37 @@
+.BadgeItem {
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: .7rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    box-shadow: 0 1px 2px 0 gray;
+}
+.BadgeItem:last-of-type {
+    margin-bottom: 0;
+}
+.BadgeItem__container {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+.BadgeItem__image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-right: 1rem;
+    border-radius: 50%;
+}
+.BadgeItem p {
+    margin-bottom: 0rem;
+    font-size: .8rem;
+}
+.BadgeItem__twitter {
+    color: rgba(9, 90, 177, 0.948);
+}
+p.BadgeItem__name {
+    font-weight: 600;
+    margin-bottom: .3rem;
+}
+.BadgeItem__job {
+    
+}

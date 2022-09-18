@@ -5,11 +5,11 @@ import ReactDOM from "react-dom/client";
 // Requerir archivos globales de CSS
 import "./global.css";
 import "./index.css";
-import { BadgeNew } from "./pages/BadgeNew";
+import { Badges } from "./pages/Badges";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BadgeNew />
+    <Badges />
   </React.StrictMode>
 );
