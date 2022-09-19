@@ -3,6 +3,7 @@ import { Navbar } from "../components/Navbar";
 import "./styles/Badges.css";
 import Logo from "../assets/images/platziconf-logo.svg";
 import { BadgesList } from "../components/BadgesList";
+import { Link } from "react-router-dom";
 
 // Listado de badges iniciales en el proyecto
 const initialState = [
@@ -54,9 +55,10 @@ export const Badges = () => {
       </div>
       <div className="Badges__container">
         <div className="Badges__buttons">
-          <a href="/badges/new" className="btn btn-primary">
+          {/* Componente para navegar entre rutas de la aplicación */}
+          <Link to="/badges/new" className="btn btn-primary">
             New Badge
-          </a>
+          </Link>
         </div>
       </div>
       <div className="Badges__list">
