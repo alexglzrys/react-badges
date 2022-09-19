@@ -1,4 +1,3 @@
-import { Navbar } from "../components/Navbar";
 import { Badge } from "../components/Badge";
 import { BadgeForm } from "../components/BadgeForm";
 
@@ -45,8 +44,7 @@ export const BadgeNew = () => {
   };
 
   return (
-    <div>
-      <Navbar />
+    <>
       <div className="BadgeNew__hero">
         <div className="container">
           <div className="row">
@@ -78,6 +76,6 @@ export const BadgeNew = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };

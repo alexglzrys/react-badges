@@ -1,0 +1,26 @@
+.NotFound {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.NotFound__image {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+
+    height: auto;
+    margin-bottom: 2rem;
+}
+.NotFound__title {
+    font-weight: 700;
+}
+.NotFound__description {
+    margin-bottom: 2rem;
+}
+.NotFound__button {
+    text-decoration: none;
+
+}

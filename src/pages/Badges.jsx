@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Navbar } from "../components/Navbar";
 import "./styles/Badges.css";
 import Logo from "../assets/images/platziconf-logo.svg";
 import { BadgesList } from "../components/BadgesList";
@@ -44,8 +43,7 @@ export const Badges = () => {
   const [badges, setBadges] = useState(initialState);
 
   return (
-    <div>
-      <Navbar />
+    <>
       <div className="Badges">
         <div className="Badges__hero">
           <div className="Badges__container">
@@ -67,6 +65,6 @@ export const Badges = () => {
           <BadgesList badges={badges} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
