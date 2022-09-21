@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/Badges.css";
 import Logo from "../assets/images/platziconf-logo.svg";
 import { BadgesList } from "../components/BadgesList";
@@ -39,8 +39,33 @@ const initialState = [
 ];
 
 export const Badges = () => {
+  console.log("1. Equivalente al constructor");
   // Establecer estado - referente al listado de badges
-  const [badges, setBadges] = useState(initialState);
+  const [badges, setBadges] = useState([]);
+  let [timer, setTimer] = useState(null);
+
+  useEffect(() => {
+    console.log("2. Montar el componente");
+    // Buen momento para realizar peticiones asincronas
+    setTimer(
+      setTimeout(() => {
+        setBadges(initialState);
+      }, 3000)
+    );
+  }, []);
+
+  useEffect(() => {
+    console.log(
+      "4. Actualizar componente si hay modificaciones en el estado de los badges"
+    );
+  }, [badges]);
+
+  useEffect(() => {
+    return () => {
+      console.log("5. Desmontar componente");
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <>
