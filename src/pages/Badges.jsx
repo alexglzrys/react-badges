@@ -1,70 +1,36 @@
 import React, { useEffect, useState } from "react";
-import "./styles/Badges.css";
-import Logo from "../assets/images/platziconf-logo.svg";
 import { BadgesList } from "../components/BadgesList";
 import { Link } from "react-router-dom";
-
-// Listado de badges iniciales en el proyecto
-const initialState = [
-  {
-    id: "2de30c42-9deb-40fc-a41f-05e62b5939a7",
-    firstName: "Freda",
-    lastName: "Grady",
-    email: "Leann_Berge@gmail.com",
-    jobTitle: "Legacy Brand Director",
-    twitter: "FredaGrady22221-7573",
-    avatarUrl:
-      "https://www.gravatar.com/avatar/f63a9c45aca0e7e7de0782a6b1dff40b?d=identicon",
-  },
-  {
-    id: "d00d3614-101a-44ca-b6c2-0be075aeed3d",
-    firstName: "Major",
-    lastName: "Rodriguez",
-    email: "Ilene66@hotmail.com",
-    jobTitle: "Human Research Architect",
-    twitter: "MajorRodriguez61545",
-    avatarUrl:
-      "https://www.gravatar.com/avatar/d57a8be8cb9219609905da25d5f3e50a?d=identicon",
-  },
-  {
-    id: "63c03386-33a2-4512-9ac1-354ad7bec5e9",
-    firstName: "Daphney",
-    lastName: "Torphy",
-    email: "Ron61@hotmail.com",
-    jobTitle: "National Markets Officer",
-    twitter: "DaphneyTorphy96105",
-    avatarUrl:
-      "https://www.gravatar.com/avatar/e74e87d40e55b9ff9791c78892e55cb7?d=identicon",
-  },
-];
+import { Loader } from "../components/Loader";
+import { NotBadges } from "../components/NotBadges";
+import { Error } from "../components/Error";
+import api from "../api";
+import Logo from "../assets/images/platziconf-logo.svg";
+import "./styles/Badges.css";
 
 export const Badges = () => {
-  console.log("1. Equivalente al constructor");
   // Establecer estado - referente al listado de badges
-  const [badges, setBadges] = useState([]);
-  let [timer, setTimer] = useState(null);
+  const [badges, setBadges] = useState(undefined);
+  const [loader, setLoader] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("2. Montar el componente");
-    // Buen momento para realizar peticiones asincronas
-    setTimer(
-      setTimeout(() => {
-        setBadges(initialState);
-      }, 3000)
-    );
-  }, []);
-
-  useEffect(() => {
-    console.log(
-      "4. Actualizar componente si hay modificaciones en el estado de los badges"
-    );
-  }, [badges]);
-
-  useEffect(() => {
-    return () => {
-      console.log("5. Desmontar componente");
-      clearTimeout(timer);
+    // Hacer un llamado a la Fake API
+    const fetchData = async () => {
+      try {
+        setLoader(true);
+        const data = await api.badges.list();
+        // Actualizar el estado con base a la respuesta de la API
+        setBadges(data);
+        setLoader(false);
+        setError(null);
+      } catch (error) {
+        setBadges(undefined);
+        setLoader(false);
+        setError(error.message);
+      }
     };
+    fetchData();
   }, []);
 
   return (
@@ -76,20 +42,38 @@ export const Badges = () => {
           </div>
         </div>
       </div>
-      <div className="Badges__container">
-        <div className="Badges__buttons">
-          {/* Componente para navegar entre rutas de la aplicación */}
-          <Link to="/badges/new" className="btn btn-primary">
-            New Badge
-          </Link>
-        </div>
-      </div>
-      <div className="Badges__list">
-        <div className="Badges__container">
-          {/* Container que muestra el listado de badges registrados */}
-          <BadgesList badges={badges} />
-        </div>
-      </div>
+      {loader ? (
+        <Loader />
+      ) : (
+        <>
+          {error ? (
+            <Error message={error.message} />
+          ) : (
+            <>
+              {badges.length === 0 ? (
+                <NotBadges />
+              ) : (
+                <>
+                  <div className="Badges__container">
+                    <div className="Badges__buttons">
+                      {/* Componente para navegar entre rutas de la aplicación */}
+                      <Link to="/badges/new" className="btn btn-primary">
+                        New Badge
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="Badges__list">
+                    <div className="Badges__container">
+                      {/* Container que muestra el listado de badges registrados */}
+                      <BadgesList badges={badges} />
+                    </div>
+                  </div>
+                </>
+              )}
+            </>
+          )}
+        </>
+      )}
     </>
   );
 };
