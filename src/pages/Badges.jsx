@@ -33,6 +33,25 @@ export const Badges = () => {
     fetchData();
   }, []);
 
+  const getInfoUI = (
+    <>
+      <div className="Badges__container">
+        <div className="Badges__buttons">
+          {/* Componente para navegar entre rutas de la aplicación */}
+          <Link to="/badges/new" className="btn btn-primary">
+            New Badge
+          </Link>
+        </div>
+      </div>
+      <div className="Badges__list">
+        <div className="Badges__container">
+          {/* Container que muestra el listado de badges registrados */}
+          <BadgesList badges={badges} />
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <>
       <div className="Badges">
@@ -49,28 +68,7 @@ export const Badges = () => {
           {error ? (
             <Error message={error.message} />
           ) : (
-            <>
-              {badges.length === 0 ? (
-                <NotBadges />
-              ) : (
-                <>
-                  <div className="Badges__container">
-                    <div className="Badges__buttons">
-                      {/* Componente para navegar entre rutas de la aplicación */}
-                      <Link to="/badges/new" className="btn btn-primary">
-                        New Badge
-                      </Link>
-                    </div>
-                  </div>
-                  <div className="Badges__list">
-                    <div className="Badges__container">
-                      {/* Container que muestra el listado de badges registrados */}
-                      <BadgesList badges={badges} />
-                    </div>
-                  </div>
-                </>
-              )}
-            </>
+            <> {badges.length === 0 ? <NotBadges /> : getInfoUI}</>
           )}
         </>
       )}
