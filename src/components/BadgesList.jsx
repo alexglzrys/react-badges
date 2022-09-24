@@ -8,7 +8,7 @@ export const BadgesList = ({ badges }) => {
     <ul className="list-unstyled">
       {badges.map((badge) => (
         <Link
-          to={`/badges/${badge.id}/edit`}
+          to={`/badges/${badge.id}`}
           key={badge.id}
           className="text-reset text-decoration-none d-block mb-3"
         >

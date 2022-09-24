@@ -36,6 +36,7 @@ const api = {
       });
     },
     read(badgeId) {
+      //throw new Error("Lo sentimos detectamos un error interno en el servidor");
       return callApi(`/badges/${badgeId}`);
     },
     update(badgeId, updates) {

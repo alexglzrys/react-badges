@@ -1,0 +1,19 @@
+.BadgeError {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.BadgeError__image {
+    display: block;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+.BadgeError__title {
+    font-weight: 700;
+    font-size: 2rem;
+}
