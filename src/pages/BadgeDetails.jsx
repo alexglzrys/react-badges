@@ -1,41 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import api from "../api";
+import { Link } from "react-router-dom";
 import "./styles/BadgeDetails.css";
 import logoConf from "../assets/images/platziconf-logo.svg";
-import { Loader } from "../components/Loader";
-import { BadgeError } from "../components/BadgeError";
 import { Badge } from "../components/Badge";
 
-export const BadgeDetails = () => {
-  // Estado inicial del componente de detalle
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [badge, setBadge] = useState(undefined);
+// ? Este es un componente presentacional - Encargado de la UI
+// * Por tanto solo debe incluir el JSX a renderizar a partir de los props proporcionados por su contenedor
 
-  const params = useParams();
-
-  // Efecto secundario para localizar la información de un badge con base en su id
-  useEffect(() => {
-    setLoading(true);
-    setError(null);
-    const fetchData = async () => {
-      try {
-        const data = await api.badges.read(params.badgeId);
-        setLoading(false);
-        setBadge(data);
-      } catch (err) {
-        setLoading(false);
-        setError(err);
-      }
-    };
-    fetchData();
-  }, [params.badgeId]);
-
-  // Mostrar componentes de carga y error
-  if (loading) return <Loader />;
-  if (error) return <BadgeError error={error} />;
-
+export const BadgeDetails = ({ badge }) => {
   return (
     <>
       <div className="BadgeDetails__hero">
