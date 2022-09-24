@@ -4,6 +4,7 @@ export const BadgeForm = ({
   formValues,
   handleInputChange,
   createNewBadge,
+  error,
 }) => {
   /**
    * El estado interno de este componente está gestionado por la página BadgeNew
@@ -20,6 +21,7 @@ export const BadgeForm = ({
   return (
     <div>
       <h1>New Attendant</h1>
+      {error && <div className="alert alert-danger">{error.message}</div>}
       {/* Enlazar eventos */}
       <form onSubmit={handleFormSubmit}>
         <div className="mb-3">

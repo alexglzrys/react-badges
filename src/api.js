@@ -29,6 +29,7 @@ const api = {
       //throw new Error("Error interno en el servidor");
     },
     create(badge) {
+      //throw new Error("Error 500");
       return callApi(`/badges`, {
         method: "POST",
         body: JSON.stringify(badge),

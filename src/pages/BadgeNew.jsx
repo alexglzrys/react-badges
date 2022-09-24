@@ -5,6 +5,8 @@ import "./styles/BadgeNew.css";
 import Logotipo from "../assets/images/platziconf-logo.svg";
 import { useState } from "react";
 import api from "../api";
+import { Loader } from "../components/Loader";
+import { useNavigate } from "react-router-dom";
 
 // Inicializar el estado del formulario con un objeto vacio que representa la estructura de la información almacenada.
 // Es importante inicializar el valor de cada campo para que pueda ser asociado o ligado con el estado (input controlado)
@@ -26,6 +28,8 @@ export const BadgeNew = () => {
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   // Manejador de inputs controlados
   const handleInputChange = ({ target }) => {
@@ -49,11 +53,15 @@ export const BadgeNew = () => {
     try {
       await api.badges.create(state.form);
       setLoading(false);
-    } catch (error) {
+      // Redireccionar al listado de badges
+      navigate("/");
+    } catch (err) {
       setLoading(false);
-      setError(error);
+      setError(err);
     }
   };
+
+  if (loading) return <Loader />;
 
   return (
     <>
@@ -80,10 +88,13 @@ export const BadgeNew = () => {
           </div>
           <div className="col">
             {/* Enviar como props, el estado incial del formulario, la función que controla los inputs del formulario, y la función para solicitar el registro de un nuevo Badge */}
+
+            {/* En caso de un error, el componente BadgeForm es encargado de mostrarlo en pantalla */}
             <BadgeForm
               formValues={state.form}
               handleInputChange={handleInputChange}
               createNewBadge={createNewBadge}
+              error={error}
             />
           </div>
         </div>
