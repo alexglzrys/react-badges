@@ -2,16 +2,17 @@
 import "./styles/Badge.css";
 // Importar una imagen
 import confLogo from "../assets/images/badge-header.svg";
+import { Gravatar } from "./Gravatar";
 
 // Recibir props en el componente
-export const Badge = ({ firstName, lastName, jobTitle, twitter, avatar }) => {
+export const Badge = ({ firstName, lastName, jobTitle, twitter, email }) => {
   return (
     <div className="Badge">
       <div className="Badge__header">
         <img src={confLogo} alt="Logotipo de la conferencia" />
       </div>
       <div className="Badge__section-name">
-        <img src={avatar} alt="Avatar" className="Badge__avatar" />
+        <Gravatar email={email} className="Badge__avatar" />
         <h1>
           {firstName} <br />
           {lastName}

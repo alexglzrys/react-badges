@@ -15,7 +15,6 @@ export const BadgeForm = ({
   const handleFormSubmit = (event) => {
     event.preventDefault();
     createNewBadge();
-    console.log("Formulario enviado");
   };
 
   return (
@@ -30,9 +29,9 @@ export const BadgeForm = ({
             type="text"
             className="form-control"
             id="firstname"
-            name="firstname"
+            name="firstName"
             onChange={handleInputChange}
-            value={formValues.firstname}
+            value={formValues.firstName}
           />
         </div>
         <div className="mb-3">
@@ -41,9 +40,9 @@ export const BadgeForm = ({
             type="text"
             className="form-control"
             id="lastname"
-            name="lastname"
+            name="lastName"
             onChange={handleInputChange}
-            value={formValues.lastname}
+            value={formValues.lastName}
           />
         </div>
         <div className="mb-3">
@@ -63,9 +62,9 @@ export const BadgeForm = ({
             type="text"
             className="form-control"
             id="jobtitle"
-            name="jobtitle"
+            name="jobTitle"
             onChange={handleInputChange}
-            value={formValues.jobtitle}
+            value={formValues.jobTitle}
           />
         </div>
         <div className="mb-4">

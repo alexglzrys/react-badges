@@ -4,14 +4,15 @@ import { BadgeForm } from "../components/BadgeForm";
 import "./styles/BadgeNew.css";
 import Logotipo from "../assets/images/platziconf-logo.svg";
 import { useState } from "react";
+import api from "../api";
 
 // Inicializar el estado del formulario con un objeto vacio que representa la estructura de la información almacenada.
 // Es importante inicializar el valor de cada campo para que pueda ser asociado o ligado con el estado (input controlado)
 const initialFormState = {
-  firstname: "",
-  lastname: "",
+  firstName: "",
+  lastName: "",
   email: "",
-  jobtitle: "",
+  jobTitle: "",
   twitter: "",
 };
 
@@ -23,6 +24,8 @@ const initialState = {
 export const BadgeNew = () => {
   // Establecer el estado interno de este componente
   const [state, setState] = useState(initialState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Manejador de inputs controlados
   const handleInputChange = ({ target }) => {
@@ -39,8 +42,17 @@ export const BadgeNew = () => {
   };
 
   // Función encargada de registrar un nuevo Badge
-  const createNewBadge = () => {
-    console.log(state.form);
+  const createNewBadge = async () => {
+    //console.log(state.form);
+    setLoading(true);
+    setError(null);
+    try {
+      await api.badges.create(state.form);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setError(error);
+    }
   };
 
   return (
@@ -59,11 +71,11 @@ export const BadgeNew = () => {
         <div className="row">
           <div className="col">
             <Badge
-              firstName={state.form.firstname || ""}
-              lastName={state.form.lastname || ""}
-              avatar="https://s.gravatar.com/avatar/3ec49fc2d25e53433fc6a2f8090e705a?s=256"
-              jobTitle={state.form.jobtitle}
-              twitter={state.form.twitter}
+              firstName={state.form.firstName || "FIRST_NAME"}
+              lastName={state.form.lastName || "LAST_NAME"}
+              jobTitle={state.form.jobTitle || "JOB_TITLE"}
+              twitter={state.form.twitter || "twitter"}
+              email={state.form.email}
             />
           </div>
           <div className="col">
