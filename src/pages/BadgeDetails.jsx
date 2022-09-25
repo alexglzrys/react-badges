@@ -2,11 +2,18 @@ import { Link } from "react-router-dom";
 import "./styles/BadgeDetails.css";
 import logoConf from "../assets/images/platziconf-logo.svg";
 import { Badge } from "../components/Badge";
+import { DeleteBadgeModal } from "../components/DeleteBadgeModal";
 
 // ? Este es un componente presentacional - Encargado de la UI
 // * Por tanto solo debe incluir el JSX a renderizar a partir de los props proporcionados por su contenedor
 
-export const BadgeDetails = ({ badge }) => {
+export const BadgeDetails = ({
+  badge,
+  isOpen,
+  handleOpenModal,
+  handleCloseModal,
+  handleDeleteBadge,
+}) => {
   return (
     <>
       <div className="BadgeDetails__hero">
@@ -37,7 +44,15 @@ export const BadgeDetails = ({ badge }) => {
               >
                 Editar
               </Link>
-              <button className="btn btn-danger">Eliminar</button>
+              <button className="btn btn-danger" onClick={handleOpenModal}>
+                Eliminar
+              </button>
+              {/* Renderizar un modal más específico para eliminar un badge */}
+              <DeleteBadgeModal
+                isOpen={isOpen}
+                handleCloseModal={handleCloseModal}
+                handleDeleteBadge={handleDeleteBadge}
+              />
             </div>
           </div>
         </div>

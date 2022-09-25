@@ -1,15 +1,6 @@
 {
   "badges": [
     {
-      "id": "2de30c42-9deb-40fc-a41f-05e62b5939a7",
-      "firstName": "Frida",
-      "lastName": "Moreno Valle",
-      "email": "frida.moreno@gmail.com",
-      "jobTitle": "Director creativo",
-      "twitter": "fidmas",
-      "avatarUrl": "https://www.gravatar.com/avatar/f63a9c45aca0e7e7de0782a6b1dff40b?d=identicon"
-    },
-    {
       "id": "d00d3614-101a-44ca-b6c2-0be075aeed3d",
       "firstName": "Major",
       "lastName": "Rodriguez",
@@ -352,15 +343,6 @@
       "avatarUrl": "https://www.gravatar.com/avatar/32d63888a2b07663fb337eab85b91398?d=identicon"
     },
     {
-      "id": "a181b291-ea1f-4296-b645-c1d5b2afc59c",
-      "firstName": "Zane",
-      "lastName": "Jones",
-      "email": "Georgiana_Haag@gmail.com",
-      "jobTitle": "National Accountability Architect",
-      "twitter": "ZaneJones11425-2361",
-      "avatarUrl": "https://www.gravatar.com/avatar/e37af7a0cae81e034172ef62c157d05c?d=identicon"
-    },
-    {
       "id": "ec9c5695-3a42-45ef-a273-d4c80c0e8f27",
       "firstName": "Zoey",
       "lastName": "Wiegand",
@@ -440,14 +422,6 @@
       "jobTitle": "Lawyer",
       "twitter": "ckaufmanpr",
       "id": "npaYZKI"
-    },
-    {
-      "firstName": "Alejandro",
-      "lastName": "González Reyes",
-      "email": "alejandro.figment@gmail.com",
-      "jobTitle": "Developer",
-      "twitter": "jsconestilo",
-      "id": "zswt5BW"
     },
     {
       "firstName": "Rodolfo",

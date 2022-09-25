@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../api";
 import { Loader } from "../components/Loader";
 import { BadgeError } from "../components/BadgeError";
@@ -15,7 +15,11 @@ export const BadgeDetailsContainer = () => {
   const [error, setError] = useState(null);
   const [badge, setBadge] = useState(undefined);
 
+  // Estado para controlar las acciones del modal
+  const [isOpen, setIsOpen] = useState(false);
+
   const params = useParams();
+  const navigate = useNavigate();
 
   // Efecto secundario para localizar la información de un badge con base en su id
   useEffect(() => {
@@ -34,10 +38,39 @@ export const BadgeDetailsContainer = () => {
     fetchData();
   }, [params.badgeId]);
 
+  // funciones controladoras para mostrar o cerrar el modal
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+  // Función para eliminar un badge
+  const handleDeleteBadge = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      await api.badges.remove(params.badgeId);
+      setLoading(false);
+      navigate("/");
+    } catch (err) {
+      setLoading(false);
+      setError(err);
+    }
+  };
+
   // Mostrar componentes de carga y error
   if (loading) return <Loader />;
   if (error) return <BadgeError error={error} />;
 
   // Si la data existe, renderizamos el componente encargado de mostrar la UI (COMPONENTE PRESENTACIONAL BadgeDetails)
-  return <BadgeDetails badge={badge} />;
+  return (
+    <BadgeDetails
+      badge={badge}
+      isOpen={isOpen}
+      handleOpenModal={handleOpenModal}
+      handleCloseModal={handleCloseModal}
+      handleDeleteBadge={handleDeleteBadge}
+    />
+  );
 };
